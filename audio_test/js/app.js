@@ -52,7 +52,7 @@ function startRecording() {
 		*/
 		audioContext = new AudioContext();
 
-		//update the format 
+		//update the format - 그냥 text라 없어도 무방
 		document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
 
 		/*  assign to gumStream for later use  */
@@ -80,6 +80,7 @@ function startRecording() {
 	});
 }
 
+// 정지 버튼 - 필요 없을듯
 function pauseRecording(){
 	console.log("pauseButton clicked rec.recording=",rec.recording );
 	if (rec.recording){
@@ -94,6 +95,7 @@ function pauseRecording(){
 	}
 }
 
+// 녹음 완료 버튼 - 다운로드까지
 function stopRecording() {
 	console.log("stopButton clicked");
 
@@ -112,7 +114,20 @@ function stopRecording() {
 	gumStream.getAudioTracks()[0].stop();
 
 	//create the wav blob and pass it on to createDownloadLink
-	rec.exportWAV(createDownloadLink);
+	//rec.exportWAV(createDownloadLink);
+	rec.exportWAV(blob => {
+		var url = URL.createObjectURL(blob);
+		var filename = new Date().toISOString();
+		console.log(url);
+		console.log(filename);
+		var link = document.createElement('a');
+		link.href = url;
+		console.log(link.href);
+		link.download = filename + '.wav';
+		link.style.display = 'none';
+        link.click();
+        link.remove();
+	})
 }
 
 function createDownloadLink(blob) {
@@ -134,15 +149,21 @@ function createDownloadLink(blob) {
 	link.download = filename+".wav"; //download forces the browser to donwload the file using the  filename
 	link.innerHTML = "Save to disk";
 
-	//add the new audio element to li
-	li.appendChild(au);
+
+
+	// 아래부터는 화면에 오디오 파일 표시. 의미 없음
+
+	//add the new audio element to li - 오디오 상자 표시
+	//li.appendChild(au);
+	
 	
 	//add the filename to the li
-	li.appendChild(document.createTextNode(filename+".wav "))
+	//li.appendChild(document.createTextNode(filename+".wav "))
 
-	//add the save to disk link to li
+	//add the save to disk link to li - save to disk 링크
 	li.appendChild(link);
 	
+	/*
 	//upload link
 	var upload = document.createElement('a');
 	upload.href="#";
@@ -161,6 +182,7 @@ function createDownloadLink(blob) {
 	})
 	li.appendChild(document.createTextNode (" "))//add a space in between
 	li.appendChild(upload)//add the upload link to li
+	*/
 
 	//add the li element to the ol
 	recordingsList.appendChild(li);
