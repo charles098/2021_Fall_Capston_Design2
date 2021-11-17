@@ -5,8 +5,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 ###########################################################################
 
-print('삼성전자 종가 알려줘')
-'''
+# print('삼성전자 전일종가 알려줘')
+
 import requests
 
 # 네이버 클로바 API - 15초/4원 과금
@@ -28,8 +28,9 @@ response = requests.post(URL,  data=data, headers=headers)
 rescode = response.status_code
 
 if(rescode == 200):
-    print (response.text)
+    #print (response.text)
+    print(response.text.split('":"')[1].split('"')[0].replace(' ',''))
+    # 공백 없이 전부
 else:
     print("Error : " + response.text)
 
-'''
