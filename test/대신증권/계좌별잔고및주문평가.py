@@ -16,7 +16,7 @@ objRq = win32com.client.Dispatch("CpTrade.CpTd6033")
 
 objRq.SetInputValue(0, acc)  # 계좌번호
 objRq.SetInputValue(1, accFlag[0])  # 상품구분 - 주식 상품 중 첫번째
-#objRq.SetInputValue(2, 1)  # 요청건수 default 14건
+objRq.SetInputValue(2, 3)  # 요청건수 default 14건
 
 objRq.BlockRequest()
 
@@ -36,31 +36,32 @@ print("수익률 = %f" % 수익률)
 
 print()
 
-종목명 = objRq.GetDataValue(0, 0)
-결제잔고수량 = objRq.GetDataValue(3, 0)
-결제장부단가 = objRq.GetDataValue(4, 0)
-전일체결수량 = objRq.GetDataValue(5, 0)
-금일체결수량 = objRq.GetDataValue(6, 0)
-평가금액 = objRq.GetDataValue(9, 0)
-평가손익 = objRq.GetDataValue(10, 0)
-수익률 = objRq.GetDataValue(11, 0)
-종목코드 = objRq.GetDataValue(12, 0)
-주문구분 = objRq.GetDataValue(13, 0)
-매도가능수량 = objRq.GetDataValue(15, 0)
-손익단가 = objRq.GetDataValue(18, 0)
+for i in range(3):
+    종목명 = objRq.GetDataValue(0, i)
+    결제잔고수량 = objRq.GetDataValue(3, i)
+    결제장부단가 = objRq.GetDataValue(4, i)
+    전일체결수량 = objRq.GetDataValue(5, i)
+    금일체결수량 = objRq.GetDataValue(6, i)
+    평가금액 = objRq.GetDataValue(9, i)
+    평가손익 = objRq.GetDataValue(10, i)
+    수익률 = objRq.GetDataValue(11, i)
+    종목코드 = objRq.GetDataValue(12, i)
+    주문구분 = objRq.GetDataValue(13, i)
+    매도가능수량 = objRq.GetDataValue(15, i)
+    손익단가 = objRq.GetDataValue(18, i)
 
-print("종목명 = %s" % 종목명)
-print("결제잔고수량 = %s" % 결제잔고수량)
-print("결제장부단가 = %f" %  결제장부단가)
-print("전일체결수량 = %f" % 전일체결수량)
-print("평가금액 = %f" % 평가금액)
-print("평가손익 = %f" % 평가손익)
-print("수익률 = %s" % 수익률)
-print("종목코드 = %s" % 종목코드)
-print("주문구분 = %f" %  주문구분)
-print("매도가능수량 = %f" % 매도가능수량)
-print("손익단가 = %f" % 손익단가)
-
+    print("종목명 = %s" % 종목명)
+    print("결제잔고수량 = %s" % 결제잔고수량)
+    print("결제장부단가 = %f" %  결제장부단가)
+    print("전일체결수량 = %f" % 전일체결수량)
+    print("평가금액 = %f" % 평가금액)
+    print("평가손익 = %f" % 평가손익)
+    print("수익률 = %s" % 수익률)
+    print("종목코드 = %s" % 종목코드)
+    print("주문구분 = %f" %  주문구분)
+    print("매도가능수량 = %f" % 매도가능수량)
+    print("손익단가 = %f" % 손익단가)
+    print()
 
 '''
 참고 code

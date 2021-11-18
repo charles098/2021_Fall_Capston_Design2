@@ -13,7 +13,7 @@ m = MeCab.Tagger()
 #corp = m.parse("종근당고려아연에스오일카카오네이버주식회사삼성전자.")
 #corp = m.parse('삼성전자sk하이닉스네이버카카오삼성바이오로직스lg화학삼성sdi현대차기아셀트리온카카오뱅크크래프톤포스코kb금융현대모비스sk텔레콤삼성물산sk이노베이션lg전자신한지주')
 #corp = m.parse(sys.argv[1]);
-corp = m.parse('삼성sdi 전일종가 알려줘')
+corp = m.parse('크래프톤우주매도해줘')
 
 # 품사 태깅
 for word in corp.split('\n'):

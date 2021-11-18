@@ -6,6 +6,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 ###########################################################################
 import StockInfo
 import Stock2code
+import Buy_or_sell
 
 # mecab으로부터 받은 것은 문자열
 # 공백으로 분리되어있다. 단어 + 태그 순서 
@@ -23,8 +24,17 @@ for i in range(int(len(tags_list) / 2)):
 #print(tag_word)
 
 
-
+# 1. 'STOCK_INFO'가 tag_word.keys()에 있으면 [주식 정보 함수] 호출
 if 'STOCK_INFO' in tag_word.keys():
-    # 1. 'STOCK_INFO'가 tag_word.keys()에 있으면 [주식 정보 함수] 호출
     result = StockInfo.stockInfo(Stock2code.stock_code[tag_word['STOCK']], tag_word['STOCK_INFO'])
+    print(result)
+
+# 2. 매수 주문 - 주문조건 : 보통, 주문호가 : 최우선
+if 'BUY' in tag_word.keys():
+    result = Buy_or_sell.buy(Stock2code.stock_code[tag_word['STOCK']], int(tag_word['SN']))
+    print(result)
+
+# 3. 매도 주문 - 주문조건 : 보통, 주문호가 : 최우선
+if 'SELL' in tag_word.keys():
+    result = Buy_or_sell.sell(Stock2code.stock_code[tag_word['STOCK']], int(tag_word['SN']))
     print(result)

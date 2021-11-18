@@ -1,7 +1,7 @@
 # 네이버 클로바 API - 15초/4원 과금
 import requests
 
-data = open("./audio_file/1-20.wav", "rb") # STT를 진행하고자 하는 음성 파일
+data = open("./audio_file/2021-11-18T06_16_39.624Z.wav", "rb") # STT를 진행하고자 하는 음성 파일
 
 Lang = "Kor" # Kor / Jpn / Chn / Eng
 URL = "https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=" + Lang
@@ -18,6 +18,7 @@ response = requests.post(URL,  data=data, headers=headers)
 rescode = response.status_code
 
 if(rescode == 200):
-    print(response.text.split('":"')[1].split('"')[0].replace(' ',''))
+    #print(response.text.split('":"')[1].split('"')[0].replace(' ',''))
+    print(response.text)
 else:
     print("Error : " + response.text)

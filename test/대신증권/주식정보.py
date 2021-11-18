@@ -23,7 +23,7 @@ def stockInfo(code : str, type : str):
 
 
 
-
+'''
 inStockMst = win32com.client.Dispatch("dscbo1.StockMst")
 inStockMst.SetInputValue(0, "A005930")   
 inStockMst.BlockRequest()
@@ -81,3 +81,4 @@ print("52주 최저가 = %f" % 일년최저가)
 print("52주 최저가일 = %f" % 일년최저가일)
 
 # (숫자).is_integer() 를 사용하면 소수가 정수인지 판별 가능
+'''
