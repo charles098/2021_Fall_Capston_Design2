@@ -16,7 +16,7 @@ objRq = win32com.client.Dispatch("CpTrade.CpTd6033")
 
 objRq.SetInputValue(0, acc)  # 계좌번호
 objRq.SetInputValue(1, accFlag[0])  # 상품구분 - 주식 상품 중 첫번째
-objRq.SetInputValue(2, 3)  # 요청건수 default 14건
+objRq.SetInputValue(2, 50)  # 요청건수 default 14건, 최대값 50. 최대값으로 설정
 
 objRq.BlockRequest()
 
@@ -36,7 +36,7 @@ print("수익률 = %f" % 수익률)
 
 print()
 
-for i in range(3):
+for i in range(5):
     종목명 = objRq.GetDataValue(0, i)
     결제잔고수량 = objRq.GetDataValue(3, i)
     결제장부단가 = objRq.GetDataValue(4, i)

@@ -27,7 +27,7 @@ def deposit():
     #print("주문가능금액 = %d" % 주문가능금액 )
 
 
-# 주문가능금액 확인
+# 주문가능금액 확인 - 증거금 등으로 사용한 금액을 제외한 예수금을 의미
 def orderable_account():
     instCpTdUtil = win32com.client.Dispatch("CpTrade.CpTdUtil")
     instCpTdUtil.TradeInit() # 매매주문을 위한 초기화

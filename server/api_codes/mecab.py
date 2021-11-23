@@ -19,4 +19,7 @@ for word in corp.split('\n')[:-2]:
     tmp = word.split(',')[0].split('\t')
     sentence = sentence + tmp[0] + ' ' + tmp[1] + ' '
 
+sentence = sentence.replace('한계 매수', '한개 매수') # 한개를 계속 한계로 인식해서 있으면 바꿔줌
+sentence = sentence.replace('한계 매도', '한개 매도') # 한개를 계속 한계로 인식해서 있으면 바꿔줌
+
 print(sentence)

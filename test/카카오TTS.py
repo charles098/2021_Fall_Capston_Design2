@@ -8,12 +8,12 @@ headers = {
     "Authorization": "KakaoAK " + rest_api_key,
 }
 
-text = "19834204원 입니다."
+text = "평가손익, -10618원, 수익률, 마이너스 1.7%, 매도가능수량, 7개"
 
 res = requests.post(kakao_speech_url, headers=headers, 
                     data=f"<speak>{text}</speak>".encode('utf-8'))
 print(type(res.content))
-#with open('.\\test\\audio_file\\output.mp3', 'wb') as file:
- #   file.write(res.content)
-  #  print('완료')
+with open('output.mp3', 'wb') as file:
+    file.write(res.content)
+    print('완료')
 
