@@ -12,6 +12,11 @@
     <div class="container">
         <img src="/mic_off.png" style="max-width: 11%; height: auto;">
     </div>
+    <div>
+        <audio id='ttsAu'>
+            <source type = "audio/mpeg" src='/tts/output.mp3'/>
+        </audio>
+    </div>
 
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -125,9 +130,19 @@
                         let formdata = new FormData();                        
                         formdata.append('soundBlob', blob, '.wav');
                         
+                        // TTS 파일명 지정
+                        let TTSfilename = new Date().toISOString();
+                        TTSfilename = TTSfilename.replaceAll(':', '_') + '.mp3';
+                        formdata.append('TTSfilename', TTSfilename);
+
                         axios.post('/post/uploads', formdata).
                             then((res) => {
                                 console.log(res);
+                            }).then(() => {
+                                setTimeout(() => {
+                                    document.getElementById('ttsAu').src = '/tts/' + TTSfilename;
+                                    document.getElementById('ttsAu').play();
+                                }, 5000);
                             })
                             .catch((err) => {
                                 console.log(err);

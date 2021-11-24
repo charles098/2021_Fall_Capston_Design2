@@ -54,12 +54,22 @@ router.post('/uploads', upload.single('soundBlob'), (req, res, next) => {
             })
         })
     }
+
+    function kakaoTTS(text){
+        const text_result = spawn('python', [__dirname + '/../api_codes/kakaoTTS.py', text, req.body.TTSfilename]);
+        return new Promise((res, rej) => {
+            text_result.stdout.on('data', data => {
+                res(data.toString());
+                
+            })
+        })
+    }
       
     
     STT()
         .then(res => getMecab(res))
-        //.then(res => console.log(res))
         .then(res => reqStock(res))
+        .then(res => kakaoTTS(res))
         .then(res => {
             console.log(res);
         });

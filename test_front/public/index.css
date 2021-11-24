@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    src: url("NanumSquareEB.ttf");
+    font-family: nanum;
+}
+
+body {
+    margin: 0px;
+    background-color: #5091FF;
+}
+
+.header{
+    font-family: nanum;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 3vw;
+    margin-top: 25vh;
+}
+
+.container {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+audio{
+    display: none;
+}

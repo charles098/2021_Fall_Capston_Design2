@@ -21,7 +21,7 @@ def deposit():
     instCpTd5331.BlockRequest()
     Deposit = instCpTd5331.GetHeaderValue(45)
 
-    return str(Deposit) + '원 입니다.'
+    return str(Deposit) + '원, 입니다.'
 
 
 # 주문가능금액 확인 - 증거금 등으로 사용한 금액을 제외한 예수금을 의미
@@ -44,7 +44,7 @@ def orderable_account():
     instCpTd5331.BlockRequest()
     Orderable_account = instCpTd5331.GetHeaderValue(10)
 
-    return str(Orderable_account) + '원 입니다.'
+    return str(Orderable_account) + '원, 입니다.'
 
 
 # 계좌번호 확인
@@ -53,7 +53,7 @@ def accountNumber():
     instCpTdUtil.TradeInit() # 매매주문을 위한 초기화
     accNum = instCpTdUtil.AccountNumber[0]
 
-    return str(accNum) + ' 입니다.'
+    return str(accNum) + ', 입니다.'
 
 
 # 계좌수익률
@@ -126,10 +126,10 @@ def myStocks_Info():
         
         if 수익률 < 0:
             result += '종목명, ' + 종목명 + ', 평가손익, ' + str(round(평가손익,2)) + '원, 수익률, 마이너스 '
-            result += str(-1 * round(수익률,3)) + '%' + ', 매도가능수량, ' + str(매도가능수량) + '개\n'
+            result += str(-1 * round(수익률,3)) + '%' + ', 매도가능수량, ' + str(매도가능수량) + '개,\n'
         else:
             result += '종목명, ' + 종목명 + ', 평가손익, ' + str(round(평가손익,2)) + '원, 수익률, '
-            result += str(round(수익률,3)) + '%' + ', 매도가능수량, ' + str(매도가능수량) + '개\n'
+            result += str(round(수익률,3)) + '%' + ', 매도가능수량, ' + str(매도가능수량) + '개,\n'
     
     return result
 

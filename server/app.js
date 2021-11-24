@@ -19,6 +19,7 @@ nunjucks.configure('views', {
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/audio', express.static(path.join(__dirname, 'uploads')));
+app.use('/tts', express.static(path.join(__dirname, 'ttsFile'))); 
 app.use(express.json());
 
 app.use('/', indexRouter);
