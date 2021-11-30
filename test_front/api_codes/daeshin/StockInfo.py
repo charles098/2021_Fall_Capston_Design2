@@ -17,6 +17,21 @@ def stockInfo(code : str, type : str):
     #print(result)
     #result = N2K.digit2txt(str(result))
     #print("{type} = {value}".format(type = type, value = result))
+    
+
+    date = [22, 24, 48, 50] # 날짜
+
+    if result < 0:
+        # 음수는 마이너스 붙여준다
+        return '마이너스' + str(result)
+    
+    if type_val[type] in date:
+        result = str(int(result))
+        year = result[:4]
+        month = result[4:6]
+        day = result[6:]
+        return year + '년,' + month + '월,' + day + '일, '
+    
     return result
 
 # (숫자).is_integer() 를 사용하면 소수가 정수인지 판별 가능

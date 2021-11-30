@@ -34,5 +34,5 @@ res = requests.post(kakao_speech_url, headers=headers,
 
 with open('./ttsFile/' + TTSfilename, 'wb') as file:
     file.write(res.content)
-
+    
 print(result)

@@ -12,11 +12,6 @@
     <div class="container">
         <img src="/mic_off.png" style="max-width: 11%; height: auto;">
     </div>
-    <div>
-        <audio id='ttsAu'>
-            <source type = "audio/mpeg" src='/tts/output.mp3'/>
-        </audio>
-    </div>
 
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -42,8 +37,6 @@
 
 
         let flag = true;
-
-        const ws = new WebSocket("ws://localhost:8000");
 
         // spacebar 누름 - 녹음 시작
         function downHandler(e){
@@ -137,22 +130,15 @@
                         TTSfilename = TTSfilename.replaceAll(':', '_') + '.mp3';
                         formdata.append('TTSfilename', TTSfilename); // TTS 파일명 지정
 
-                        axios.post('/post/uploads', formdata).
-                            then((res) => {
-                                console.log(res);
-                            }).then(() => {
-                                //document.getElementById('ttsAu').src = '/tts/' + TTSfilename;
-                                //document.getElementById('ttsAu').play();
-                                
-                                setTimeout(() => {
-                                    document.getElementById('ttsAu').src = '/tts/' + TTSfilename;
-                                    document.getElementById('ttsAu').play();
-                                }, 1000);
-                                
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                        });
+                        axios.post('/post/uploads', formdata);
+                        
+                        setTimeout(() => {
+                            const audio = new Audio('/tts/' + TTSfilename);
+                            audio.play();
+                        },3000);
+                        //document.getElementById('ttsAu').src = '/tts/' + TTSfilename;
+                        //document.getElementById('ttsAu').play();
+                        
                         
                     })
                     

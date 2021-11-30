@@ -8,6 +8,7 @@ type_val = {"상한가" : 8, "하한가" : 9, "전일종가" : 10, "현재가" :
 "신고가" : 21, "신고가일" : 22, "신저가" : 23, "신저가일" : 24, "PER" : 28, "상장주식수" : 31, "전일거래량" : 46,
 "일년최고가" : 47, "일년최고가일" : 48, "일년최저가" : 49, "일년최저가일" : 50, "종가" : 11}
 
+# (전일종가 - 현재가) / 전일종가
 
 def stockInfo(code : str, type : str):
     inStockMst = win32com.client.Dispatch("dscbo1.StockMst")
@@ -21,7 +22,15 @@ def stockInfo(code : str, type : str):
 
 # (숫자).is_integer() 를 사용하면 소수가 정수인지 판별 가능
 
+inStockMst = win32com.client.Dispatch("dscbo1.StockMst")
+inStockMst.SetInputValue(0, 'A005930')   
+inStockMst.BlockRequest()
 
+#전일종가 = inStockMst.GetHeaderValue(10)    
+전일대비 = inStockMst.GetHeaderValue(11)    
+#print((전일종가 - 현재가) / 전일종가)
+#print(전일종가)
+print(전일대비)
 
 '''
 inStockMst = win32com.client.Dispatch("dscbo1.StockMst")

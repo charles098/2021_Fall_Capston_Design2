@@ -3,8 +3,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const spawn = require('child_process').spawn; 
-const WebSocket = require('ws').Server;
-const wss = new WebSocket({port: 8000});
+const nodeID3 = require('node-id3');
+//const wss = new WebSocket({port: 8000});
 const router = express.Router();
 
 try{
@@ -62,7 +62,6 @@ router.post('/uploads', upload.single('soundBlob'), (req, res, next) => {
         return new Promise((res, rej) => {
             text_result.stdout.on('data', data => {
                 res(data.toString());
-                
             })
         })
     }
@@ -71,18 +70,22 @@ router.post('/uploads', upload.single('soundBlob'), (req, res, next) => {
     STT()
         .then(res => getMecab(res))
         .then(res => reqStock(res))
-        .then(res => kakaoTTS(res))
+        .then(res => {
+            kakaoTTS(res);
+            /*
+            // TTS 파일 읽어지는지 확인 - 클라이언트측에서 오류 나서 미리 검사
+            interval = setInterval(() => {
+                try{
+                    console.log(123);
+                    nodeID3.read(__dirname + '/../ttsFile/' + req.body.TTSfilename);
+                    clearInterval(interval);
+                }
+                catch(err){}
+            }, 100)
+            */
+        })
         .then(res => {
             console.log(res);
-            /*
-            wss.on('connection', ws => {
-                //ws.send("Hello! I an a server");
-                ws.on("message", message => {
-                    ws.send(res);
-                    console.log("Received: %s", message);
-                })
-            })
-            */
         });
 
     
