@@ -1,6 +1,5 @@
 import win32com.client
 
-
 # 예수금 확인 - 결제일에 미수금 발생해서 반대매매 발생할 수도 있음
 def deposit():
     instCpTdUtil = win32com.client.Dispatch("CpTrade.CpTdUtil")
@@ -21,7 +20,7 @@ def deposit():
     instCpTd5331.BlockRequest()
     Deposit = instCpTd5331.GetHeaderValue(45)
 
-    return str(Deposit) + '원, 입니다.'
+    return str(Deposit) + '원.'
 
 
 # 주문가능금액 확인 - 증거금 등으로 사용한 금액을 제외한 예수금을 의미
@@ -44,16 +43,20 @@ def orderable_account():
     instCpTd5331.BlockRequest()
     Orderable_account = instCpTd5331.GetHeaderValue(10)
 
-    return str(Orderable_account) + '원, 입니다.'
+    return str(Orderable_account) + '원'
 
 
 # 계좌번호 확인
 def accountNumber():
     instCpTdUtil = win32com.client.Dispatch("CpTrade.CpTdUtil")
     instCpTdUtil.TradeInit() # 매매주문을 위한 초기화
-    accNum = instCpTdUtil.AccountNumber[0]
+    accNum = str(instCpTdUtil.AccountNumber[0])
 
-    return str(accNum) + ', 입니다.'
+    result = ''
+    for ch in accNum:
+        result += ch + ' '
+
+    return result 
 
 
 # 계좌수익률
@@ -65,7 +68,7 @@ def accountInfo():
     # Cp6032 : 주식 잔고 조회````
     acc = g_objCpTrade.AccountNumber[0]  # 계좌번호
     accFlag = g_objCpTrade.GoodsList(acc, 1)  # 주식상품 구분
-    print(acc, accFlag[0])
+    #print(acc, accFlag[0])
 
     objRq = win32com.client.Dispatch("CpTrade.CpTd6033")
 
@@ -82,10 +85,10 @@ def accountInfo():
     평가손익 = objRq.GetHeaderValue(4)
     수익률 = objRq.GetHeaderValue(8)
 
-    result = '평가손익은, ' + str(round(평가손익,2)) + '원, 수익률은, ' + str(round(수익률,3)) + '% 입니다.'
+    result = '평가손익, ' + str(round(평가손익,2)) + '원, 수익률, ' + str(round(수익률,3)) + '%.'
 
     if 수익률 < 0:
-        result = '평가손익은, ' + str(round(평가손익,2)) + '원, 수익률은, 마이너스 ' + str(-1 * round(수익률,3)) + '% 입니다.'
+        result = '평가손익, ' + str(round(평가손익,2)) + '원, 수익률, 마이너스 ' + str(-1 * round(수익률,3)) + '%.'
 
     return result
 
@@ -109,7 +112,7 @@ def myStocks_Info():
     cnt = objRq.GetHeaderValue(7) # 보유 종목 수
 
     result = ''
-
+    
     for i in range(cnt):
         종목명 = objRq.GetDataValue(0, i)
         #결제잔고수량 = objRq.GetDataValue(3, i)
@@ -155,6 +158,8 @@ def myStock_Info(code : str):
 
     cnt = objRq.GetHeaderValue(7) # 보유 종목 수
 
+    result = "해당 주식을 보유하고 있지 않습니다."
+
     for i in range(cnt):
         종목명 = objRq.GetDataValue(0, i)
         if 종목명 == stock:
@@ -176,5 +181,5 @@ def myStock_Info(code : str):
             if 수익률 < 0:
                 result = '평가손익, ' + str(round(평가손익,2)) + '원, 수익률, 마이너스 '
                 result += str(-1 * round(수익률,3)) + '%' + ', 매도가능수량, ' + str(매도가능수량) + '개'
-
-            return result
+            
+    return result

@@ -12,11 +12,6 @@
     <div class="container">
         <img src="/mic_off.png" style="max-width: 11%; height: auto;">
     </div>
-    <div>
-        <audio id='ttsAu'>
-            <source type = "audio/mpeg" src='/tts/output.mp3'/>
-        </audio>
-    </div>
 
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -135,18 +130,24 @@
                         TTSfilename = TTSfilename.replaceAll(':', '_') + '.mp3';
                         formdata.append('TTSfilename', TTSfilename);
 
-                        axios.post('/post/uploads', formdata).
-                            then((res) => {
-                                console.log(res);
-                            }).then(() => {
-                                setTimeout(() => {
-                                    document.getElementById('ttsAu').src = '/tts/' + TTSfilename;
-                                    document.getElementById('ttsAu').play();
-                                }, 5000);
+                        axios.post('/post/uploads', formdata)
+
+                        const interval = setInterval(() => {
+                            axios.get('/tts/' + TTSfilename)
+                            .then((res) => {
+                                const audio = new Audio('/tts/' + TTSfilename);
+                                audio.play(); 
+                                clearInterval(interval);
                             })
-                            .catch((err) => {
-                                console.log(err);
-                        });
+                            .catch();
+                        }, 1000);
+                        
+
+                        //setTimeout(() => {
+                        //    const audio = new Audio('/tts/' + TTSfilename);
+                        //    audio.play();
+                        //},5000);
+                        
                     })
                 }
             }
