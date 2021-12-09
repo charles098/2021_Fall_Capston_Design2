@@ -4,7 +4,7 @@ import num_to_Korean as N2K
 # 입력값 - 주식 이름
 
 type_val = {"상한가" : 8, "하한가" : 9, "전일종가" : 10, "현재가" : 11, "전일대비" : 12,
-"시가" : 13, "고가" : 14, "저가" : 15, "매도호가" : 16, "매수호가" : 17, "누적거래량" : 18, "누적거래대금" : 19,
+"시가" : 13, "고가" : 14, "국가": 14, "저가" : 15, "매도호가" : 16, "매수호가" : 17, "누적거래량" : 18, "누적거래대금" : 19,
 "신고가" : 21, "신고가일" : 22, "신저가" : 23, "신저가일" : 24, "PER" : 28, "상장주식수" : 31, "전일거래량" : 46,
 "일년최고가" : 47, "일년최고가일" : 48, "일년최저가" : 49, "일년최저가일" : 50, "종가" : 11}
 
@@ -23,7 +23,7 @@ def stockInfo(code : str, type : str):
 # (숫자).is_integer() 를 사용하면 소수가 정수인지 판별 가능
 
 inStockMst = win32com.client.Dispatch("dscbo1.StockMst")
-inStockMst.SetInputValue(0, 'A005930')   
+inStockMst.SetInputValue(0, 'A035720')   
 inStockMst.BlockRequest()
 
 #전일종가 = inStockMst.GetHeaderValue(10)    

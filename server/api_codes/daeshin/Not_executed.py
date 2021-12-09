@@ -59,12 +59,12 @@ def not_executed(flag: int, stock_code : str):
             #orderDesc  = objRq.GetDataValue(5, i)  # 주문구분내용
             amount  = str(objRq.GetDataValue(6, i))  # 주문수량
             price  = str(objRq.GetDataValue(7, i))  # 주문단가
-            #ContAmount = objRq.GetDataValue(8, i)  # 체결수량
+            ContAmount = str(objRq.GetDataValue(8, i))  # 체결수량
             #credit  = objRq.GetDataValue(9, i)  # 신용구분
             modAvali  = objRq.GetDataValue(11, i)  # 정정취소 가능수량
             buysell  = objRq.GetDataValue(13, i)  # 매매구분코드
-            if buysell == '1': buysell = '매수'
-            elif buysell == '2': buysell = '매도'
+            if buysell == '1': buysell = '매도'
+            else: buysell = '매수'
             #creditdate  = objRq.GetDataValue(17, i)  # 대출일
             #orderFlagDesc  = str(objRq.GetDataValue(19, i))  # 주문호가구분코드내용
             #orderFlag  = objRq.GetDataValue(21, i)  # 주문호가구분코드
@@ -80,7 +80,7 @@ def not_executed(flag: int, stock_code : str):
                 cancel_dic[i].append(code)
                 cancel_dic[i].append(modAvali)
 
-            result += '종목명, ' + name + ', 주문수량, ' + amount
+            result += '종목명, ' + name + ', 주문수량, ' + amount + '개, 미체결수량, ' + str(int(amount) - int(ContAmount))
             result += '개, 주문단가, ' + price + '원, 매수매도, ' + buysell + ',\n'
 
         # 연속 처리 체크 - 다음 데이터가 없으면 중지
@@ -88,7 +88,10 @@ def not_executed(flag: int, stock_code : str):
             #print("[Cp5339] 연속 조회 여부: 다음 데이터가 없음")
             break
     
-    if flag == 1: return result
+    if flag == 1: 
+        if result == '':
+            return "미체결된 내역이 존재하지 않습니다."
+        return result
     
     if flag == 2:
         if len(cancel_dic) == 0: 
@@ -119,6 +122,8 @@ def not_executed(flag: int, stock_code : str):
 
     if flag == 3:
         # 주식 취소 주문
+        if cancel_idx == 0:
+            return "미체결된 내역이 존재하지 않습니다."
         for i in range(cancel_idx):
             objCancelOrder.SetInputValue(1, cancel_dic[i][0])  # 원주문 번호 - 정정을 하려는 주문 번호
             objCancelOrder.SetInputValue(2, acc)  # 상품구분 - 주식 상품 중 첫번째

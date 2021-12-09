@@ -39,7 +39,14 @@ if 'BUY' in tag_word.keys():
         objStockMst = win32com.client.Dispatch("DsCbo1.StockMst")
         objStockMst.SetInputValue(0, Stock2code.stock_code[tag_word['STOCK']])
         objStockMst.BlockRequest()
-        price = objStockMst.GetDataValue(1, num)  # NUM차 매수호가
+        price = objStockMst.GetDataValue(0, num - 1)  # NUM차 매수호가
+        result = Buy_or_sell.buy(Stock2code.stock_code[tag_word['STOCK']], int(tag_word['SN']), price)
+    elif 'CUSTOM_SELL' in tag_word.keys(): # N차 매도호가로 매도 ex) 삼성전자 2차매도호가에 네개 매도
+        num = int(tag_word['CUSTOM_SELL'][0])
+        objStockMst = win32com.client.Dispatch("DsCbo1.StockMst")
+        objStockMst.SetInputValue(0, Stock2code.stock_code[tag_word['STOCK']])
+        objStockMst.BlockRequest()
+        price = objStockMst.GetDataValue(1, num)  # NUM차 매도호가
         result = Buy_or_sell.buy(Stock2code.stock_code[tag_word['STOCK']], int(tag_word['SN']), price)
     else:
         if tags_list.count('SN') == 1:
@@ -52,7 +59,14 @@ if 'SELL' in tag_word.keys():
         objStockMst = win32com.client.Dispatch("DsCbo1.StockMst")
         objStockMst.SetInputValue(0, Stock2code.stock_code[tag_word['STOCK']])
         objStockMst.BlockRequest()
-        price = objStockMst.GetDataValue(0, num)  # NUM차 매도호가
+        price = objStockMst.GetDataValue(1, num)  # NUM차 매도호가
+        result = Buy_or_sell.sell(Stock2code.stock_code[tag_word['STOCK']], int(tag_word['SN']), price)
+    elif 'CUSTOM_BUY' in tag_word.keys(): # N차 매수호가로 매수 ex) 삼성전자 3차매수호가에 두개 매수
+        num = int(tag_word['CUSTOM_BUY'][0])
+        objStockMst = win32com.client.Dispatch("DsCbo1.StockMst")
+        objStockMst.SetInputValue(0, Stock2code.stock_code[tag_word['STOCK']])
+        objStockMst.BlockRequest()
+        price = objStockMst.GetDataValue(0, num - 1)  # NUM차 매수호가
         result = Buy_or_sell.sell(Stock2code.stock_code[tag_word['STOCK']], int(tag_word['SN']), price)
     else:
         if tags_list.count('SN') == 1:

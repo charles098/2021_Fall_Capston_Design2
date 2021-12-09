@@ -146,8 +146,8 @@ def not_executed(flag: int, stock_code : str):
             print(objCancelOrder.GetDibStatus(), objCancelOrder.GetDibMsg1())
 
 
-#not_executed(1, "None")  # "미체결 내역 조회"
-not_executed(2, 'A185750')  # 단일 주문 최소, code 존재  "삼성전자 주문 취소"
+not_executed(1, "None")  # "미체결 내역 조회"
+#not_executed(2, 'A185750')  # 단일 주문 최소, code 존재  "삼성전자 주문 취소"
 #not_executed(3, "None")  # 주문 전체 취소  "전종목 주문 취소"
 
 # A020560

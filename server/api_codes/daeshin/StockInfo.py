@@ -2,9 +2,9 @@ import win32com.client
 
 # 입력값 - 주식 이름
 
-type_val = {"상한가" : 8, "하한가" : 9, "전일종가" : 10, "현재가" : 11, "전일대비" : 12,
-"시가" : 13, "고가" : 14, "저가" : 15, "매도호가" : 16, "매수호가" : 17, "누적거래량" : 18, "누적거래대금" : 19,
-"신고가" : 21, "신고가날짜" : 22, "신저가" : 23, "신저가날짜" : 24, "PER" : 28, "상장주식수" : 31, "전일거래량" : 46,
+type_val = {"상한가" : 8, "하한가" : 9, "전일종가" : 10, "현재가" : 11, "현재값" : 11, "전일대비" : 12,
+"시가" : 13, "고가" : 14, "국가" : 14, "저가" : 15, "주가" : 15, "매도호가" : 16, "매수호가" : 17, "거래량" : 18, "거래대금" : 19,
+"신고가" : 21, "신고가날짜" : 22, "실적과" : 23, "실적가" : 23, "신저가" : 23, "실적과날짜" : 24, "신저가날짜" : 24, "주가수익률" : 28, "주가수익율" : 28, "상장주식수" : 31, "전일거래량" : 46,
 "1년최고가" : 47, "1년최고가날짜" : 48, "1년최저가" : 49, "1년최저가날짜" : 50, "종가" : 11}
 
 # - 특이사항
@@ -21,11 +21,15 @@ def stockInfo(code : str, type : str):
     #print("{type} = {value}".format(type = type, value = result))
     
     date = [22, 24, 48, 50] # 날짜
-    others = [18, 46] # ~주 입니다
+    others = [18, 28, 46] # ~주 입니다
+    
+    if type_val[type] == 31: 
+        return str(result) + '주, 입니다.'
+        
     if result < 0:
         # 음수는 마이너스 붙여준다
         if type_val[type] == 28:
-            return '마이너스' + str(result)
+            return '마이너스' + str(round(result, 2)) + ', 입니다.'
         elif type_val[type] == 12:
             return '마이너스' + str(result) + '원, 입니다.'
     elif type_val[type] in date:
@@ -35,8 +39,12 @@ def stockInfo(code : str, type : str):
         day = result[6:]
         return year + '년,' + month + '월,' + day + '일, '
     elif type_val[type] in others:
+        if type_val[type] == 28:
+            return str(round(result, 2)) + ', 입니다.'
         return str(result) + '주, 입니다.'
     else:
+        if type_val[type] == 19:
+            return str(result * 10000) + '원, 입니다.'
         return str(result) + '원, 입니다.'
 
 # (숫자).is_integer() 를 사용하면 소수가 정수인지 판별 가능
