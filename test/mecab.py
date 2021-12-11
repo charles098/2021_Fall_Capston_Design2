@@ -15,7 +15,7 @@ m = MeCab.Tagger()
 #corp = m.parse(sys.argv[1]);
 print()
 print('최고하락종목 5개')
-corp = m.parse('최고하락종목 5개')
+corp = m.parse('삼성전자 종가')
 
 print()
 # 품사 태깅
