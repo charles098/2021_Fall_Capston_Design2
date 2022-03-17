@@ -1,4 +1,4 @@
-# 2021 Fall Capston Design 2 - 음성인식을 통한 주식 자동매매   
+# 2021 Fall Capston Design 2   
    
 - audio_test - 브라우저 음성 녹음 예제 코드   
 - server - 메인 서버 디렉터리   
