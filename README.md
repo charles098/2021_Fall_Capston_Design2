@@ -1,4 +1,4 @@
-# **VoiceStock**
+# VoiceStock
 <br />
 <br />
 
