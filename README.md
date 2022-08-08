@@ -23,51 +23,70 @@
 -   전종목 주문 취소
 
 ## ****📺** 주문기능 시연 영상 (스피커 ON)**
+<details>
 <summary>삼성전자 5주 매수</summary>
 <div markdown="1">
 https://user-images.githubusercontent.com/55475550/183487499-6aa52f5a-a46a-4cc1-beb6-885717215ad2.mp4
 </div>
 </details>
+
+<details>
 <summary>삼성전자 5주 매도</summary>
 <div markdown="2">
 https://user-images.githubusercontent.com/55475550/183487530-3da74172-82e4-4b01-8322-5eca0d79fee7.mp4
 </div>
 </details>
+
+<details>
 <summary>한국항공우주 4차 매도호가에 2주 매수</summary>
 <div markdown="3">
 https://user-images.githubusercontent.com/55475550/183487625-4e1865f2-42d9-4300-9ef9-42ce7e1e80cf.mp4
 </div>
 </details>
+
+<details>
 <summary>한국항공우주 4차매수호가에 2주 매도</summary>
 <div markdown="4">
 https://user-images.githubusercontent.com/55475550/183487683-af848e85-aa1f-4d46-896f-1d9d065f766a.mp4
 </div>
 </details>
+
+<details>
 <summary>LG이노택 전체 매도</summary>
 <div markdown="5">
 https://user-images.githubusercontent.com/55475550/183487785-a55d37ff-4fc5-4d0c-a916-9df31e719642.mp4
 </div>
 </details>
+
+<details>
 <summary>보유 주식 정보 확인</summary>
 <div markdown="6">
 https://user-images.githubusercontent.com/55475550/183487846-4c4ddaa9-f3db-40e7-9fef-9a2adaeec7de.mp4
 </div>
 </details>
+
+<details>
 <summary>sk하아닉스 보유주식 정보 확인</summary>
 <div markdown="7">
 https://user-images.githubusercontent.com/55475550/183487269-df924a85-5a1b-45c5-a96c-1c21f96690fc.mp4
 </div>
 </details>
+
+<details>
 <summary>미체결 내역 조회</summary>
 <div markdown="8">
 https://user-images.githubusercontent.com/55475550/183487977-340ff8b5-f1bd-475b-ab19-a4961e980692.mp4
 </div>
 </details>
+
+<details>
 <summary>종근당 주문 취소</summary>
 <div markdown="9">
 https://user-images.githubusercontent.com/55475550/183488044-52448414-2c51-483c-876b-9c537968c50a.mp4
 </div>
 </details>
+
+<details>
 <summary>전종목 주문 취소</summary>
 <div markdown="10">
 https://user-images.githubusercontent.com/55475550/183488098-d86a3161-7429-451b-862e-bb1166142f08.mp4
