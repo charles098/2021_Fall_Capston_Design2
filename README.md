@@ -1,13 +1,33 @@
 # **VoiceStock**
+<br />
+<br />
 
 ## 📜 **개요 (Outline)**
 
 이 프로젝트는 2021년 가을학기 캡스톤 디자인2 개인 주제로, 시각장애인들의 주식시장 진입 장벽을 낮추고자 시작되었습니다. 단순히 스페이스바를 누른 상태에서 마이크에 명령을 하면, 해당 명령에 맞는 로직을 처리한 뒤에 결과를 스피커로 들려줍니다. 타켓층이 시각장애인이기 때문에 페이지가 굉장히 단순하다는 특징이 있습니다. 모든 종목을 다루지는 않고 코스피 200(2021.12.13 한국거래소 기준)만 다룹니다. 
 
+<br />
+
 ## **💫 프로젝트 흐름도 (Project Flow)**
+
 ![img](https://user-images.githubusercontent.com/55475550/183487041-c6a21a9c-85bb-48ac-8512-503d1585e20e.png)
 
+<br />
+
+## **🛠️ 기술 스택 (Feature)**
+
+-   Vanilla Javascript
+-   Python
+-   nodejs
+-   Mecab-ko
+-   네이버 STT API
+-   대신증권 API
+-   카카오 TTS API
+
+<br />
+
 ## **📝 서비스 기능 (Feature)**
+
 -   23가지 주식 정보 확인 (ex. 상한가, 현재가, 거래량 등)
 -   매수/매도 주문
 -   1~10차 매수/매도호가에 매수/매도 주문
@@ -22,7 +42,10 @@
 -   단일 주문 취소
 -   전종목 주문 취소
 
-## ****📺** 주문기능 시연 영상 (스피커 ON)**
+<br />
+
+## **📺 주문기능 시연 영상 (스피커 ON)**
+
 <details>
 <summary>삼성전자 5주 매수</summary>
 <div markdown="1">
@@ -92,3 +115,9 @@ https://user-images.githubusercontent.com/55475550/183488044-52448414-2c51-483c-
 https://user-images.githubusercontent.com/55475550/183488098-d86a3161-7429-451b-862e-bb1166142f08.mp4
 </div>
 </details>
+
+<br />
+## **📄 보고서**
+[최종보고서.pdf](https://github.com/charles098/2021_Fall_Capston_Design2/files/9284239/default.pdf)
+
+
