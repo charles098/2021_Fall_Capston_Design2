@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "kor-to-number": "^1.1.4",
-    "node-audiorecorder": "^2.2.0",
-    "recorder-js": "^1.0.7",
-    "request": "^2.88.2"
-  }
-}
