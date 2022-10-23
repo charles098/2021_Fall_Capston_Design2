@@ -96,8 +96,14 @@
                         formdata.append('TTSfilename', TTSfilename);
 
                         axios.post('/post/uploads', formdata)
-
+                        
+                        let count = 0;
                         const interval = setInterval(() => {
+                            if (++count == 6) {
+                                const audio = new Audio('/tts/failed.mp3')
+                                audio.play();
+                                clearInterval(interval);
+                            }
                             axios.get('/tts/' + TTSfilename)
                             .then((res) => {
                                 const audio = new Audio('/tts/' + TTSfilename);
